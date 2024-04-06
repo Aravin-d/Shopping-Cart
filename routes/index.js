@@ -31,7 +31,7 @@ const products = [
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Shopping Cart', products });
+  res.render('index', { title: 'Shopping Cart', products});
 });
 
 module.exports = router;
