@@ -1,8 +1,10 @@
-const express = require("express");
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-router.get('/admin', (req,res) => {
-    res.send("hello");
-})
+
+/* GET home page. */
+router.get('/', (req, res, next) => {
+  res.send('resourse');
+});
 
 module.exports = router;
