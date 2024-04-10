@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const hbs = require('express-handlebars');
+const fileUpload = require('express-fileupload');
+const connect = require("./config/connection")
+const dotenv = require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
@@ -26,9 +29,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
+app.use(fileUpload());
 
-
+connect();
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 
