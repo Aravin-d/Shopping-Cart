@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const productHelpers = require('../product-helpers/productHelpers');
+const path = require('path');
 
 const products = [
   {
@@ -40,8 +41,12 @@ router.get("/add-product", (req, res) => {
 });
 
 router.post('/add-product', (req, res) => {
-  productHelpers.addProduct(req.body, (result) => {
-    res.render('admin/add-product');
+  productHelpers.addProduct(req.body, (insertId) => {
+
+      let image = req.files.image;
+      let imagePath = path.join(__dirname, `../public/images/product-images ${insertId}.jpg`);
+      image.mv(imagePath);
+      
   });
 })
 
