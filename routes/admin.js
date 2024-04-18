@@ -6,7 +6,9 @@ const path = require('path');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('admin/view-products', {admin : true, products});
+  productHelpers.getProducts().then((products) => {
+    res.render('admin/view-products', {admin : true, products});
+  })
 });
 
 router.get("/add-product", (req, res) => {
@@ -17,7 +19,7 @@ router.post('/add-product', (req, res) => {
   productHelpers.addProduct(req.body, (insertId) => {
 
       let image = req.files.image;
-      let imagePath = path.join(__dirname, `../public/images/product-images ${insertId}.jpg`);
+      let imagePath = path.join(__dirname, `../public/product-images/${insertId}.jpg`);
       image.mv(imagePath);
     res.render('admin/add-product');
   });
