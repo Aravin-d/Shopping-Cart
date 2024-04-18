@@ -12,10 +12,13 @@ async function connect() {
     try{
         await client.connect();
         console.log('DATABASE CONNECTED');
-        const database = client.db('Shopping-Cart');
+        return client;
     }catch(err){
         console.error(err);
     }
 }
 
-module.exports = connect;
+module.exports = {
+    connect,
+    client
+};
