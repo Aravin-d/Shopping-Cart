@@ -14,8 +14,6 @@ function addProduct(product, callback){
 function getProducts(){
     return new Promise( async (resolve, reject) => {
         let products = await db.collection(collection.PRODUCT_COLLECTION).find().toArray();
-        console.log(products);
-        console.log(products);
         resolve(products);
     })
 }

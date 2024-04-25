@@ -7,6 +7,8 @@ const hbs = require('express-handlebars');
 const fileUpload = require('express-fileupload');
 const { connect } = require("./config/connection");
 const dotenv = require('dotenv').config();
+const session = require('express-session');
+const sessionSecret = process.env.SECRET_KEY;
 
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
@@ -30,6 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
+app.use(session({secret: sessionSecret, cookie: {maxAge : 6000}}))
 
 connect();
 app.use('/', indexRouter);
