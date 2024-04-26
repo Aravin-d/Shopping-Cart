@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
-app.use(session({secret: sessionSecret, cookie: {maxAge : 6000}}))
+app.use(session({secret: sessionSecret, cookie: {maxAge : 60000}}))
 
 connect();
 app.use('/', indexRouter);

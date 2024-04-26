@@ -3,17 +3,19 @@ var router = express.Router();
 const productHelpers = require("../helpers/productHelpers");
 const path = require("path");
 
-/* GET home page. */
+/* GET admin page. */
 router.get("/", (req, res, next) => {
   productHelpers.getProducts().then((products) => {
     res.render("admin/view-products", { admin: true, products });
   });
 });
 
+//Function to render add-product page
 router.get("/add-product", (req, res) => {
   res.render("admin/add-product");
 });
 
+//Function to add products by admin
 router.post("/add-product", (req, res) => {
   productHelpers.addProduct(req.body, (insertId) => {
     let image = req.files.image;

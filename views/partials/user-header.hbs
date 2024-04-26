@@ -7,22 +7,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/">Products</a>
+          {{#if user}}
+              <a class="nav-link" href="#">ORDERES</a>
+          {{/if}}
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
+            {{#if user}}
+              <p class="fw-bold text-primary">{{user.Name}}</p>
+            {{else}}
+               <p class="fw-bold">Account</p>
+            {{/if}}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item text-success" href="/login">LOG IN</a></li>
-            <li><a class="dropdown-item text-success" href="#">SIGN UP</a></li>
+            {{#if user}}
+               <li><a class="dropdown-item text-primary fw-bold" href="#">CHANGE PASSWORD</a></li>
+               <li><a class="dropdown-item text-primary fw-bold" href="#">CHANGE USERNAME</a></li>
+               <li><a class="dropdown-item text-danger fw-bold" href="/logout">LOG OUT</a></li>
+            {{else}}
+              <li><a class="dropdown-item text-success fw-bold" href="/login">LOG IN</a></li>
+              <li><a class="dropdown-item text-success fw-bold" href="#">SIGN UP</a></li>
+            {{/if}}
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Your Cart</a>
+          {{#if user}}
+          <a class="nav-link" href="#">CART</a>
+          {{/if}}
         </li>
       </ul>
       
